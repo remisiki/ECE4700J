@@ -1,0 +1,1839 @@
+\documentclass[12pt]{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+% \usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage[margin=2.54cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{csquotes}
+\usepackage[section]{placeins}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{indentfirst}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{xcolor}
+\title{ECE4700J Homework 3}
+\author{Yiwen Yang}
+
+	
+\begin{document}
+\date{}
+\maketitle
+
+\section*{Q1}
+
+	\begin{enumerate}
+		\item
+			16 bypass paths, 16 point-to-point connections, 4 5x1 muxes.
+		\item
+			8 bypass paths, 8 point-to-point connections, 4 3x1 muxes.
+	\end{enumerate}
+
+\section*{Q2}
+
+	\begin{enumerate}
+		\item ~
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|c|}
+					\hline
+					write-read & write-write & read-write\\
+					\hline
+					L2-L3 & L1-L2 & L2-L4\\
+					L3-L4 & L2-L5 & L1-L4\\
+					L4-L5 & L1-L5 & L2-L5\\
+					L2-L4 &  & L1-L5\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item ~
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|}
+					\hline R1 & R1\\ \hline R2 & R2\\ \hline R3 & R3\\ \hline R4 & R4\\ \hline
+				\end{tabular}
+				\hspace{5em}
+				\begin{tabular}{|c|}
+					\hline R5\\ R6\\ R7\\ R8\\ R9\\ R10\\ \hline
+				\end{tabular}
+			\end{table}
+			\centerline{\texttt{R1 = 100} $\rightarrow$ \texttt{R5 = 100} [\texttt{R1}]}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|}
+					\hline R1 & \textcolor{red}{R5}\\ \hline R2 & R2\\ \hline R3 & R3\\ \hline R4 & R4\\ \hline
+				\end{tabular}
+				\hspace{5em}
+				\begin{tabular}{|c|}
+					\hline \\ R6\\ R7\\ R8\\ R9\\ R10\\ \hline
+				\end{tabular}
+			\end{table}
+			\newpage{}
+			\centerline{\texttt{R1 = 100} $\rightarrow$ \texttt{R5 = 100} [\texttt{R1}]}
+			\centerline{\texttt{R1 = R2 + R4} $\rightarrow$ \texttt{R6 = R2 + R4} [\texttt{R1}]}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|}
+					\hline R1 & \textcolor{red}{R6}\\ \hline R2 & R2\\ \hline R3 & R3\\ \hline R4 & R4\\ \hline
+				\end{tabular}
+				\hspace{5em}
+				\begin{tabular}{|c|}
+					\hline \\ \\ R7\\ R8\\ R9\\ R10\\ \hline
+				\end{tabular}
+			\end{table}
+			\centerline{\texttt{R1 = 100} $\rightarrow$ \texttt{R5 = 100} [\texttt{R1}]}
+			\centerline{\texttt{R1 = R2 + R4} $\rightarrow$ \texttt{R6 = R2 + R4} [\texttt{R1}]}
+			\centerline{\texttt{R2 = R4 - 25} $\rightarrow$ \texttt{R7 = R4 - 25} [\texttt{R2}]}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|}
+					\hline R1 & R6\\ \hline R2 & \textcolor{red}{R7}\\ \hline R3 & R3\\ \hline R4 & R4\\ \hline
+				\end{tabular}
+				\hspace{5em}
+				\begin{tabular}{|c|}
+					\hline \\ \\ \\ R8\\ R9\\ R10\\ \hline
+				\end{tabular}
+			\end{table}
+			\centerline{\texttt{R1 = 100} $\rightarrow$ \texttt{R5 = 100} [\texttt{R1}]}
+			\centerline{\texttt{R1 = R2 + R4} $\rightarrow$ \texttt{R6 = R2 + R4} [\texttt{R1}]}
+			\centerline{\texttt{R2 = R4 - 25} $\rightarrow$ \texttt{R7 = R4 - 25} [\texttt{R2}]}
+			\centerline{\texttt{R4 = R1 + R3} $\rightarrow$ \texttt{R8 = R6 + R3} [\texttt{R4}]}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|}
+					\hline R1 & R6\\ \hline R2 & R7\\ \hline R3 & R3\\ \hline R4 & \textcolor{red}{R8}\\ \hline
+				\end{tabular}
+				\hspace{5em}
+				\begin{tabular}{|c|}
+					\hline \\ \\ \\ \\ R9\\ R10\\ \hline
+				\end{tabular}
+			\end{table}
+			\centerline{\texttt{R1 = 100} $\rightarrow$ \texttt{R5 = 100} [\texttt{R1}]}
+			\centerline{\texttt{R1 = R2 + R4} $\rightarrow$ \texttt{R6 = R2 + R4} [\texttt{R1}]}
+			\centerline{\texttt{R2 = R4 - 25} $\rightarrow$ \texttt{R7 = R4 - 25} [\texttt{R2}]}
+			\centerline{\texttt{R4 = R1 + R3} $\rightarrow$ \texttt{R8 = R6 + R3} [\texttt{R4}]}
+			\centerline{\texttt{R1 = R1 + 30} $\rightarrow$ \texttt{R9 = R6 + 30} [\texttt{R1}]}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|}
+					\hline R1 & \textcolor{red}{R9}\\ \hline R2 & R7\\ \hline R3 & R3\\ \hline R4 & R8\\ \hline
+				\end{tabular}
+				\hspace{5em}
+				\begin{tabular}{|c|}
+					\hline \\ \\ \\ \\ \\ R10\\ \hline 
+				\end{tabular}
+			\end{table}
+	\end{enumerate}
+
+\section*{Q3}
+
+	\begin{enumerate}
+		\item
+			Compilers are difficult to design.
+		\item
+			Register file bandwidth and memory bandwidth will be large.
+	\end{enumerate}
+
+\section*{Q4}
+
+	\begin{enumerate}
+		\item
+			Cycle 0
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & \textcolor{red}{F} &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & \textcolor{red}{F} &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p9 & p2 & p5 & p1 & p4 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & -- & -- & -- & -- & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					\textcolor{red}{ld} & & \textcolor{red}{no}\\
+					\hline
+					\textcolor{red}{mult} & & \textcolor{red}{no}\\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 1a
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & \textcolor{red}{Di} &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & \textcolor{red}{p10} & p2 & p5 & p1 & p4 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & \textcolor{red}{no} & -- & -- & -- & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & \textcolor{red}{p9} & no\\
+					\hline
+					mult & & no\\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{red}{ld} & \textcolor{red}{p8} & \textcolor{red}{yes} & \textcolor{red}{--} & \textcolor{red}{yes} & \textcolor{red}{p10} & \textcolor{red}{0}\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 1b
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & \textcolor{red}{Di} &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & \textcolor{red}{p11} & p5 & p1 & p4 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & \textcolor{red}{no} & -- & -- & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & \textcolor{red}{p2}& no\\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					ld & p8 & yes & -- & yes & p10 & 0\\
+					\hline
+					\textcolor{red}{mult} & \textcolor{red}{p10} & \textcolor{red}{no} & \textcolor{red}{p7} & \textcolor{red}{yes} & \textcolor{red}{p11} & \textcolor{red}{1}\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 1c
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & \textcolor{red}{F} &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & \textcolor{red}{F} &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p11 & p5 & p1 & p4 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & -- & -- & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					\textcolor{red}{add} & & \textcolor{red}{no}\\
+					\hline
+					\textcolor{red}{or} & & \textcolor{red}{no}\\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					ld & p8 & yes & -- & yes & p10 & 0\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 2a
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & \textcolor{red}{I} &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p11 & p5 & p1 & p4 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & -- & -- & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & & no\\
+					\hline
+					or & & no\\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					ld & p8 & \textcolor{green}{yes} & -- & \textcolor{green}{yes} & p10 & 0\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 2b
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & \textcolor{red}{Di} &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & \textcolor{red}{p12} & p5 & p1 & p4 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & \textcolor{red}{no} & -- & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & \textcolor{red}{p11} & no\\
+					\hline
+					or & & no\\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					\textcolor{red}{add} & \textcolor{red}{p7} & \textcolor{red}{yes} & \textcolor{red}{p5} & \textcolor{red}{yes} & \textcolor{red}{p12} & \textcolor{red}{2}\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 2c
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & \textcolor{red}{Di} &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  &  &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & \textcolor{red}{p13} & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & no & \textcolor{red}{no} & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & \textcolor{red}{p4} & no\\
+					\hline
+					 & & \\
+					\hline
+					 & & \\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					add & p7 & yes & p5 & yes & p12 & 2\\
+					\hline
+					\textcolor{red}{or} & \textcolor{red}{p12} & \textcolor{red}{no} & \textcolor{red}{p1} & \textcolor{red}{yes} & \textcolor{red}{p13} & \textcolor{red}{3}\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 2d
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & \textcolor{red}{F} &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & \textcolor{red}{F} &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p13 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & no & no & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					\textcolor{red}{sub} & & \textcolor{red}{no}\\
+					\hline
+					\textcolor{red}{ld} & & \textcolor{red}{no}\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					add & p7 & yes & p5 & yes & p12 & 2\\
+					\hline
+					or & p12 & no & p1 & yes & p13 & 3\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 3a
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & \textcolor{red}{RR} &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & \textcolor{red}{I} &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p13 & p3 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & no & no & -- & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & & no\\
+					\hline
+					ld & & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					add & p7 & \textcolor{green}{yes} & p5 & \textcolor{green}{yes} & p12 & 2\\
+					\hline
+					or & p12 & no & p1 & yes & p13 & 3\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 3b
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & \textcolor{red}{Di} &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F &  &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p13 & \textcolor{red}{p14} & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & no & no & \textcolor{red}{no} & --\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & \textcolor{red}{p3} & no\\
+					\hline
+					ld & & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					or & p12 & no & p1 & yes & p13 & 3\\
+					\hline
+					\textcolor{red}{sub} & \textcolor{red}{p13} & \textcolor{red}{no} & \textcolor{red}{--} & \textcolor{red}{yes} & \textcolor{red}{p14} & \textcolor{red}{4}\\
+					\hline
+					 &  &  &  &  &  & \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 3c
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & \textcolor{red}{Di} &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & \textcolor{red}{p15} & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & no & no & no & \textcolor{red}{no}\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & \textcolor{red}{p13} & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					or & p12 & no & p1 & yes & p13 & 3\\
+					\hline
+					sub & p13 & no & -- & yes & p14 & 4\\
+					\hline
+					\textcolor{red}{ld} & \textcolor{red}{p6} & \textcolor{red}{yes} & \textcolor{red}{--} & \textcolor{red}{yes} & \textcolor{red}{p15} & \textcolor{red}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 3d
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di &  &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & \textcolor{red}{yes} & no & no & no\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					or & p12 & \textcolor{red}{yes} & p1 & yes & p13 & 3\\
+					\hline
+					sub & p13 & no & -- & yes & p14 & 4\\
+					\hline
+					ld & p6 & yes & -- & yes & p15 & 5\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 4a
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & \textcolor{red}{I} &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & \textcolor{red}{I} &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & no & no & yes & no & no & no\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & no & p7 & yes & p11 & 1\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					or & p12 & \textcolor{green}{yes} & p1 & \textcolor{green}{yes} & p13 & 3\\
+					\hline
+					sub & p13 & no & -- & yes & p14 & 4\\
+					\hline
+					ld & p6 & \textcolor{green}{yes} & -- & \textcolor{green}{yes} & p15 & 5\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 4b
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & \textcolor{red}{X} &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & \textcolor{red}{RR} &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  &  &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & \textcolor{red}{yes} & no & yes & \textcolor{red}{yes} & no & no\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & \textcolor{red}{yes} & p7 & yes & p11 & 1\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					sub & p13 & \textcolor{red}{yes} & -- & yes & p14 & 4\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 5a
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X &  &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & \textcolor{red}{I} &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR &  &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I &  &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & \textcolor{red}{I} &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I &  &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & yes & no & yes & yes & \textcolor{red}{yes} & no\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					mult & p10 & \textcolor{green}{yes} & p7 & \textcolor{green}{yes} & p11 & 1\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					sub & p13 & \textcolor{green}{yes} & -- & \textcolor{green}{yes} & p14 & 4\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 5b
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X & \textcolor{red}{M1} &  &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & I &  &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR & \textcolor{red}{X} &  &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I & \textcolor{red}{RR} &  &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & I &  &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I & \textcolor{red}{RR} &  &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & yes & no & yes & yes & yes & no\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & no\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p10} & \textcolor{gray}{yes} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p11} & \textcolor{gray}{1}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p13} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p14} & \textcolor{gray}{4}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 6
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X & M1 & \textcolor{red}{M2} &  &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & I & \textcolor{red}{RR} &  &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR & X & \textcolor{red}{W} &  &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I & RR & \textcolor{red}{X} &  &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & I & \textcolor{red}{RR} &  &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I & RR & \textcolor{red}{X} &  &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & yes & no & yes & yes & yes & \textcolor{red}{yes}\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & no\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					add & p11 & \textcolor{red}{yes}\\
+					\hline
+					or & p4 & no\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p10} & \textcolor{gray}{yes} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p11} & \textcolor{gray}{1}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p13} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p14} & \textcolor{gray}{4}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 7
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X & M1 & M2 & \textcolor{red}{W} &  &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & I & RR & \textcolor{red}{X1} &  &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR & X & W & \textcolor{red}{C} &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I & RR & X & \textcolor{red}{W} &  &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & I & RR & \textcolor{red}{X} &  &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I & RR & X & \textcolor{red}{M1} &  &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & yes & yes & yes & yes & yes & yes & yes & \textcolor{red}{--} & yes & yes & yes & yes\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					ld & p9 & \textcolor{red}{yes}\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p11} & \textcolor{gray}{yes}\\
+					\hline
+					or & p4 & \textcolor{red}{yes}\\
+					\hline
+					sub & p3 & no\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p10} & \textcolor{gray}{yes} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p11} & \textcolor{gray}{1}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p13} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p14} & \textcolor{gray}{4}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 8
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X & M1 & M2 & W & \textcolor{red}{C} &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & I & RR & X1 & \textcolor{red}{X2} &  &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR & X & W & C &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I & RR & X & W & \textcolor{red}{C} &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & I & RR & X & \textcolor{red}{W} &  &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I & RR & X & M1 & \textcolor{red}{M2} &  &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & yes & \textcolor{red}{--} & yes & yes & yes & yes & \textcolor{red}{--} & yes & -- & yes & yes & yes & yes\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p9} & \textcolor{gray}{yes}\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p11} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p4} & \textcolor{gray}{yes}\\
+					\hline
+					sub & p3 & \textcolor{red}{yes}\\
+					\hline
+					ld & p13 & no\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p10} & \textcolor{gray}{yes} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p11} & \textcolor{gray}{1}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p13} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p14} & \textcolor{gray}{4}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 9
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X & M1 & M2 & W & C &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & I & RR & X1 & X2 & \textcolor{red}{X3} &  &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR & X & W & C &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I & RR & X & W & C &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & I & RR & X & W & \textcolor{red}{C} &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I & RR & X & M1 & M2 & \textcolor{red}{W} &  &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & \textcolor{red}{--} & -- & yes & yes & yes & yes & -- & yes & -- & yes & yes & yes & yes\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p9} & \textcolor{gray}{yes}\\
+					\hline
+					mult & p2 & no\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p11} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p4} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p3} & \textcolor{gray}{yes}\\
+					\hline
+					ld & p13 & \textcolor{red}{yes}\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p10} & \textcolor{gray}{yes} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p11} & \textcolor{gray}{1}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p13} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p14} & \textcolor{gray}{4}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 10
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X & M1 & M2 & W & C &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & I & RR & X1 & X2 & X3 & \textcolor{red}{W} &\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR & X & W & C &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I & RR & X & W & C &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & I & RR & X & W & C &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I & RR & X & M1 & M2 & W & \textcolor{red}{C} &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & yes & -- & -- & yes & yes & yes & yes & -- & yes & -- & yes & \textcolor{red}{--} & yes & yes\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p9} & \textcolor{gray}{yes}\\
+					\hline
+					mult & p2 & \textcolor{red}{yes}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p11} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p4} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p3} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p13} & \textcolor{gray}{yes}\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p10} & \textcolor{gray}{yes} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p11} & \textcolor{gray}{1}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p13} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p14} & \textcolor{gray}{4}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\item
+			Cycle 11 (Done)
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+					\hline
+					\texttt{ld [r1] $\rightarrow$ r3} & F & Di & I & RR & X & M1 & M2 & W & C &  &  &\\
+					\hline
+					\texttt{mult r3*r2 $\rightarrow$ r4} & F & Di &  &  &  & I & RR & X1 & X2 & X3 & W & \textcolor{red}{C}\\
+					\hline
+					\texttt{add r2+r5 $\rightarrow$ r4} &  & F & Di & I & RR & X & W & C &  &  &  &\\
+					\hline
+					\texttt{or r4|r6 $\rightarrow$ r7} &  & F & Di &  & I & RR & X & W & C &  &  &\\
+					\hline
+					\texttt{sub r7-3 $\rightarrow$ r8} &  &  & F & Di &  & I & RR & X & W & C &  &\\
+					\hline
+					\texttt{ld [r9] $\rightarrow$ r7} &  &  & F & Di & I & RR & X & M1 & M2 & W & C &\\
+					\hline 
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					r1 & r2 & r3 & r4 & r5 & r6 & r7 & r8 & r9\\
+					\hline
+					p8 & p7 & p10 & p12 & p5 & p1 & p15 & p14 & p6\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9 & p10 & p11 & p12 & p13 & p14 & p15\\
+					\hline
+					yes & \textcolor{red}{--} & -- & -- & yes & yes & yes & yes & -- & yes & -- & yes & -- & yes & yes\\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					Instruction & To Free & Done\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p9} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p2} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p11} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p4} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p3} & \textcolor{gray}{yes}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p13} & \textcolor{gray}{yes}\\
+					\hline
+				\end{tabular}
+				\hfill
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					Instruction & rs1 & Ready & rs2 & Ready & rd & Birthday\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p8} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p10} & \textcolor{gray}{0}\\
+					\hline
+					\textcolor{gray}{mult} & \textcolor{gray}{p10} & \textcolor{gray}{yes} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p11} & \textcolor{gray}{1}\\
+					\hline
+					\textcolor{gray}{add} & \textcolor{gray}{p7} & \textcolor{gray}{yes} & \textcolor{gray}{p5} & \textcolor{gray}{yes} & \textcolor{gray}{p12} & \textcolor{gray}{2}\\
+					\hline
+					\textcolor{gray}{or} & \textcolor{gray}{p12} & \textcolor{gray}{yes} & \textcolor{gray}{p1} & \textcolor{gray}{yes} & \textcolor{gray}{p13} & \textcolor{gray}{3}\\
+					\hline
+					\textcolor{gray}{sub} & \textcolor{gray}{p13} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p14} & \textcolor{gray}{4}\\
+					\hline
+					\textcolor{gray}{ld} & \textcolor{gray}{p6} & \textcolor{gray}{yes} & \textcolor{gray}{--} & \textcolor{gray}{yes} & \textcolor{gray}{p15} & \textcolor{gray}{5}\\
+					\hline
+				\end{tabular}
+			\end{table}
+	\end{enumerate}
+
+\section*{Q5}
+
+	\begin{enumerate}
+		\item
+			If x2 and x8 all have some kind of dependencies before these instructions, such as branches or register writebacks, and x3 does not have data dependencies, then instruction 5 may be executed first.
+		\item
+			This is not possible, since instruction 3 and 4 has a RAW dependency on x6, then instruction 4 has to be anyway executed after instruction 3.
+	\end{enumerate}
+
+\section*{OQ1}
+
+	I would suggest using a 1-bit predictor for this branch. Since this branch shows a pattern of continually taking either T or N in a certain period, then a 1-bit predictor can switch the prediction faster than the 2-bit one so there will be fewer miss predictions.
+
+\end{document}
