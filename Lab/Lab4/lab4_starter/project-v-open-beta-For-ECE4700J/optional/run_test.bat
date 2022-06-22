@@ -1,0 +1,1 @@
+call D:/Xilinx/Vivado/2021.2/bin/vivado.bat -mode tcl -source vivado_test.tcl
