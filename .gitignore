@@ -3,3 +3,6 @@
 *.log
 *.out
 *.aux
+chisel-tutorial
+target
+test_run_dir
