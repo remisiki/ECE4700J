@@ -3,6 +3,8 @@
 *.log
 *.out
 *.aux
+*.tex
 chisel-tutorial
 target
 test_run_dir
+pipeview.txt
